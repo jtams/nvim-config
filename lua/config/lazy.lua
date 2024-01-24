@@ -1,6 +1,32 @@
 -- Lazy.nvim package manager setup
 -- This file loads all the plugins
 
+-- Plugin List
+
+-- nvim-lspconfig -> https://github.com/neovim/nvim-lspconfig
+-- nvim-cmp -> https://github.com/hrsh7th/nvim-cmp
+-- nvim-telescope -> https://github.com/nvim-telescope/telescope.nvim
+-- catppuccino.nvim -> https://github.com/Pocco81/Catppuccino.nvim
+-- nvim-lualine -> https://github.com/nvim-lualine/lualine.nvim
+-- nvim-treesitter -> https://github.com/nvim-treesitter/nvim-treesitter
+-- conform.nvim -> https://github.com/stevearc/conform.nvim
+-- gitsigns.nvim -> https://github.com/lewis6991/gitsigns.nvim
+-- Comment.nvim -> https://github/com/numToStr/Comment.nvim
+-- nvim-autopairs -> https://github.com/windwp/nvim-autopairs
+-- harpoon -> https://github.com/ThePrimeagen/harpoon
+-- oil.nvim -> https://github.com/stevearc/oil.nvim
+-- copilot.vim -> https://github.com/github/copilot.vim
+-- vim-surround -> https://github.com/tpope/vim-surround
+-- neogen -> https://github.com/danymat/neogen
+-- inc-rename.nvim -> https://github.com/smjonas/inc-rename.nvim
+
+-- Plugins that I would consider using becaue they are cool
+-- neoscroll.nvim -> https://github.com/karb94/neoscroll.nvim
+--   Smooth scrolling
+
+-- nvim-scissors -> https://github.com/chrisgrieser/nvim-scissors
+--   Create/Edit snippets. Works with LuaSnip
+
 -- Installs lazy.nvim. Taken from Kickstart.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -45,6 +71,8 @@ require("lazy").setup({
 			"rafamadriz/friendly-snippets",
 		},
 	},
+
+	{ "tpope/vim-sleuth" },
 
 	{ "nvim-lua/plenary.nvim" },
 
@@ -117,4 +145,22 @@ require("lazy").setup({
 
 	"github/copilot.vim",
 	"tpope/vim-surround",
+
+	{
+		"danymat/neogen",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"onsails/lspkind.nvim",
+		},
+		config = true,
+		-- Uncomment next line if you want to follow only stable versions
+		-- version = "*"
+	},
+
+	{
+		"smjonas/inc-rename.nvim",
+		config = function()
+			require("inc_rename").setup()
+		end,
+	},
 })

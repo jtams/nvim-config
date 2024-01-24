@@ -44,6 +44,9 @@ local servers = {
 			telemetry = { enable = false },
 		},
 	},
+	volar = {
+		vue = {},
+	},
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

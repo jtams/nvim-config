@@ -1,7 +1,10 @@
 -- Config Settings
 
 -- Leader set to space
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
+
+-- Cursor Block
+vim.opt.guicursor = "n-v-c-i:block"
 
 -- Open netrw file explorer
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
@@ -13,7 +16,7 @@ vim.o.hlsearch = false
 vim.wo.number = true
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
+vim.o.mouse = "a"
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -26,7 +29,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Keep signcolumn
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 
 -- Update times
 vim.o.updatetime = 250
@@ -35,7 +38,10 @@ vim.o.timeoutlen = 300
 -- Makes completion menu always appear if there's completion results
 -- and doesn't select an item from the completion. Default behaviour
 -- selects the first item.
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = "menuone,noselect"
+
+-- Set conceallevel to 2 so that markdown headers are hidden
+vim.opt_local.conceallevel = 2
 
 -- Idk this fixed a color problem
 vim.o.termguicolors = true
@@ -54,5 +60,5 @@ vim.opt.expandtab = true
 
 -- Set cursor back to line when exiting vim. With Windows Terminal Vim makes it a block cursor
 -- Works with WSL and PowerShell
-vim.api.nvim_create_autocmd('VimLeave', { command = 'set guicursor= | call chansend(v:stderr, "\x1b[ q")' })
-vim.api.nvim_create_autocmd('VimLeave', { command = 'set guicursor= | call chansend(v:stderr, "\x1b[?12h")' })
+vim.api.nvim_create_autocmd("VimLeave", { command = 'set guicursor= | call chansend(v:stderr, "\x1b[ q")' })
+vim.api.nvim_create_autocmd("VimLeave", { command = 'set guicursor= | call chansend(v:stderr, "\x1b[?12h")' })
