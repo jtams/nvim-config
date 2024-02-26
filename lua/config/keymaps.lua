@@ -19,6 +19,9 @@ vim.keymap.set('x', '<leader>p', [["_dP]])
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
+-- Remaps C-c to escape (github copilot doesn't like it C-c)
+vim.keymap.set('i', '<C-c>', '<Esc>')
+
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
