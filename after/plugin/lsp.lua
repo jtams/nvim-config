@@ -47,6 +47,12 @@ local servers = {
 	volar = {
 		vue = {},
 	},
+
+	mdx_analyzer = {
+		mdx = {},
+		filetypes = { "mdx" },
+		args = { "--stdio" },
+	},
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
