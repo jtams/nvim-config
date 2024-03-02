@@ -10,6 +10,7 @@ return {
 				return vim.fn.executable("make") == 1
 			end,
 		},
+		"nvim-lua/plenary.nvim",
 	},
 	config = function()
 		-- Telescope
