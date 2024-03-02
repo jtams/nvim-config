@@ -13,7 +13,9 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>a", "<cmd>Grapple toggle<cr>")
+		vim.keymap.set("n", "<leader>a", function()
+			grapple.tag()
+		end)
 		vim.keymap.set("n", "<C-e>", "<cmd>Grapple open_tags<cr>")
 
 		vim.keymap.set("n", "<C-t>", function()

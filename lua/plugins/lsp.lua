@@ -10,9 +10,17 @@ return {
 		"hrsh7th/nvim-cmp",
 		"hrsh7th/cmp-nvim-lsp",
 		"L3MON4D3/LuaSnip",
+		"j-hui/fidget.nvim",
 	},
 	config = function()
 		require("neodev").setup()
+		require("fidget").setup({
+			notification = {
+				window = {
+					winblend = 0,
+				},
+			},
+		})
 
 		vim.diagnostic.config({
 			virtual_text = true, -- Inline diagnostic
