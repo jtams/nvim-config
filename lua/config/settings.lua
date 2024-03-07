@@ -6,9 +6,6 @@ vim.g.mapleader = " "
 -- Cursor Block
 vim.opt.guicursor = "n-v-c-i:block"
 
--- Open netrw file explorer
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-
 -- Set highlight on search
 vim.o.hlsearch = false
 
@@ -57,6 +54,16 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+
+-- Disables auto commenting new lines because it's annoying in most situations
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "*",
+	callback = function()
+		local current_format_options = vim.api.nvim_buf_get_option(0, "formatoptions")
+		current_format_options = current_format_options:gsub("[cro]", "")
+		vim.api.nvim_buf_set_option(0, "formatoptions", current_format_options)
+	end,
+})
 
 -- Set cursor back to line when exiting vim. With Windows Terminal Vim makes it a block cursor
 -- Works with WSL and PowerShell
