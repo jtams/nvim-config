@@ -3,7 +3,13 @@ return {
 	opts = {},
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
+		local oil = require("oil")
 		vim.keymap.set("n", "-", "<CMD>Oil --float<CR>")
+
+		-- Esc to close
+		-- vim.keymap.set("n", "<ESC>", function()
+		-- 	oil.close()
+		-- end)
 
 		require("oil").setup({
 			default_file_explorer = true,

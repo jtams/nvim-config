@@ -12,6 +12,16 @@ vim.o.hlsearch = false
 -- Line numbers
 vim.wo.number = true
 
+-- Hide mode because the status bar already shows it
+vim.opt.showmode = false
+
+-- Adds character to the end of the line
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = "split"
+
 -- Enable mouse mode
 vim.o.mouse = "a"
 
