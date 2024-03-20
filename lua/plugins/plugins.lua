@@ -11,4 +11,8 @@ return {
 	"github/copilot.vim",
 
 	"tpope/vim-surround",
+
+	"vimpostor/vim-tpipeline",
+
+	"luckasRanarison/tailwind-tools.nvim",
 }
