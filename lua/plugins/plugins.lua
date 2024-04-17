@@ -12,7 +12,10 @@ return {
 
 	"tpope/vim-surround",
 
+	"tpope/vim-fugitive",
+
 	"vimpostor/vim-tpipeline",
 
 	"luckasRanarison/tailwind-tools.nvim",
+
 }
