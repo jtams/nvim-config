@@ -24,10 +24,10 @@ return {
 				html = { { "prettierd", "prettier" } },
 				cpp = { { "clangd" } },
 			},
-			-- format_on_save = {
-			-- 	timeout_ms = 500,
-			-- 	lsp_fallback = true,
-			-- },
+			format_on_save = {
+				timeout_ms = 0,
+				lsp_fallback = true,
+			},
 			notify_on_error = false,
 		})
 
