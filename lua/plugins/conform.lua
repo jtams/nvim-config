@@ -7,29 +7,38 @@ return {
 
 		conform.setup({
 			formatters_by_ft = {
-				go = { { "gopls" } },
+				go = { "gopls" },
 				lua = { "stylua" },
+				rust = { "rustfmt" },
 				python = { "isort", "black" },
-				javascript = { { "prettier" } },
-				typescript = { { "prettier" } },
-				json = { { "prettier" } },
-				jsonc = { { "prettier" } },
-				yaml = { { "prettier" } },
-				markdown = { { "prettier" } },
-				vue = { { "prettierd", "prettier" } },
-				javascriptreact = { { "prettier" } },
-				typescriptreact = { { "prettier" } },
-				css = { { "prettierd", "prettier" } },
-				scss = { { "prettierd", "prettier" } },
-				html = { { "prettierd", "prettier" } },
-				cpp = { { "clangd" } },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				json = { "prettier" },
+				jsonc = { "prettier" },
+				yaml = { "prettier" },
+				markdown = { "prettier" },
+				vue = { "prettier", "prettierd" },
+				javascriptreact = { "prettierd" },
+				typescriptreact = { "prettierd" },
+				css = { "prettier", "prettierd" },
+				scss = { "prettier", "prettierd" },
+				html = { "prettier", "prettierd" },
+				cpp = { "clangd" },
 			},
 			format_on_save = {
-				timeout_ms = 0,
-				lsp_fallback = true,
+				-- These options will be passed to conform.format()
+				timeout_ms = 500,
+				lsp_format = "fallback",
 			},
 			notify_on_error = false,
+			log_level = vim.log.levels.DEBUG,
 		})
+
+		require("conform").formatters.prettier = {
+			prepend_args = function(self, ctx)
+				return { "--ignore-path", ".prettierignore" }
+			end,
+		}
 
 		-- Adds keybind to format
 		vim.api.nvim_set_keymap(

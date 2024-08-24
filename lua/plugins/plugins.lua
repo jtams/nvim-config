@@ -8,14 +8,17 @@ return {
 		opts = {},
 	},
 
-	"github/copilot.vim",
 
 	"tpope/vim-surround",
 
 	"tpope/vim-fugitive",
 
-	"vimpostor/vim-tpipeline",
+	-- "vimpostor/vim-tpipeline",
 
 	"luckasRanarison/tailwind-tools.nvim",
 
+	{
+		'mrcjkb/rustaceanvim',
+		version = '^5',
+	}
 }

@@ -50,6 +50,9 @@ return {
 			-- Hover
 			nmap("K", vim.lsp.buf.hover)
 
+			-- Rename
+			nmap("<leader>rn", vim.lsp.buf.rename)
+
 			-- Signature
 			nmap("<C-k>", vim.lsp.buf.signature_help)
 		end
@@ -58,15 +61,14 @@ return {
 		require("mason-lspconfig").setup()
 
 		local servers = {
-			lua_ls = {
-				Lua = {
-					workspace = { checkThirdParty = false },
-					telemetry = { enable = false },
+			volar = {
+				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+				init_options = {
+					vue = {
+						hybridMode = false,
+					},
 				},
 			},
-			volar = {
-				vue = {},
-			}
 		}
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
