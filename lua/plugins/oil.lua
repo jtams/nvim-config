@@ -3,7 +3,6 @@ return {
 	opts = {},
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
-		local oil = require("oil")
 		vim.keymap.set("n", "-", "<CMD>Oil<CR>")
 
 		-- Esc to close
