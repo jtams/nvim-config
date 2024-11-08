@@ -26,50 +26,56 @@ return {
 			virtual_text = true, -- Inline diagnostic
 			signs = true, -- Add signs in sign column
 			underline = true,
-			update_in_insert = true,
+			update_in_insert = false,
 			severity_sort = true,
 		})
 
 		-- Mostly copied from Kickstart
 		local on_attach = function(_, bufnr)
-			local nmap = function(keys, func, desc)
-				if desc then
-					desc = "LSP: " .. desc
+			local function safe_map(mode, lhs, rhs, opts)
+				opts = opts or {}
+				opts.buffer = bufnr
+				if type(rhs) == "string" or type(rhs) == "function" then
+					vim.keymap.set(mode, lhs, rhs, opts)
+				else
+					print("Invalid rhs for keymap: " .. lhs)
 				end
-
-				vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 			end
 
+			local telescope = require("telescope.builtin")
+
 			-- Goto Definition
-			nmap("gd", require("telescope.builtin").lsp_definitions)
+			safe_map("n", "gd", telescope.lsp_definitions, { buffer = bufnr, desc = "Go to definition" })
+
 			-- Go to reference
-			nmap("gr", require("telescope.builtin").lsp_references)
+			safe_map("n", "gr", telescope.lsp_references, { buffer = bufnr, desc = "Go to references" })
+
 			-- Go to implemnation
-			nmap("gI", require("telescope.builtin").lsp_implementations)
+			safe_map("n", "gI", telescope.lsp_implementations, { buffer = bufnr, desc = "Go to implementations" })
 
 			-- Hover
-			nmap("K", vim.lsp.buf.hover)
-
-			-- Rename
-			nmap("<leader>rn", vim.lsp.buf.rename)
+			safe_map("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Show hover" })
 
 			-- Signature
-			nmap("<C-k>", vim.lsp.buf.signature_help)
+			safe_map("n", "L", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Show signature help" })
+
+			-- Rename
+			safe_map("n", "<F2>", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename" })
+
+			-- Code actions
+			safe_map("n", "<leader>da", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Show code actions" })
+			safe_map("n", "<leader>de", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+
+			-- Diagnostic keymaps
+			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+			-- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 		end
 
 		require("mason").setup()
 		require("mason-lspconfig").setup()
 
-		local servers = {
-			volar = {
-				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-				init_options = {
-					vue = {
-						hybridMode = false,
-					},
-				},
-			},
-		}
+		local servers = {}
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)

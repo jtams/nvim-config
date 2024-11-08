@@ -11,27 +11,23 @@ return {
 				lua = { "stylua" },
 				rust = { "rustfmt" },
 				python = { "isort", "black" },
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				json = { "prettier" },
-				jsonc = { "prettier" },
-				yaml = { "prettier" },
-				markdown = { "prettier" },
-				vue = { "prettier", "prettierd" },
-				javascriptreact = { "prettierd" },
-				typescriptreact = { "prettierd" },
+				javascript = { "prettier", "prettierd" },
+				typescript = { "prettier", "prettierd" },
+				json = { "prettier", "prettierd" },
+				jsonc = { "prettier", "prettierd" },
+				yaml = { "prettier", "prettierd" },
+				markdown = { "prettier", "prettierd" },
+				vue = { "prettier", "prettier", "prettierd" },
+				javascriptreact = { "prettier", "prettierd" },
+				typescriptreact = { "prettier", "prettierd" },
 				css = { "prettier", "prettierd" },
 				scss = { "prettier", "prettierd" },
 				html = { "prettier", "prettierd" },
 				cpp = { "clangd" },
 			},
-			format_on_save = {
-				-- These options will be passed to conform.format()
-				timeout_ms = 500,
-				lsp_format = "fallback",
-			},
+			format_on_save = nil,
 			notify_on_error = false,
-			log_level = vim.log.levels.DEBUG,
+			log_level = vim.log.levels.ERROR,
 		})
 
 		require("conform").formatters.prettier = {
@@ -45,7 +41,7 @@ return {
 			"n",
 			"<leader>ff",
 			'<CMD>lua require("conform").format()<CR>',
-			{ noremap = true, silent = true }
+			{ noremap = true, silent = true, desc = "Format file" }
 		)
 
 		-- Add :Format command
@@ -84,5 +80,13 @@ return {
 				return
 			end
 		end, { nargs = 1 })
+
+		-- Toggle format on save
+		vim.keymap.set(
+			"n",
+			"<leader>ft",
+			":FormatOnSave " .. (auto_format_enabled and "false" or "true") .. "<CR>",
+			{ noremap = true, silent = true, desc = "Toggle format on save" }
+		)
 	end,
 }

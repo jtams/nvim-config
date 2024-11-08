@@ -1,24 +1,7 @@
 -- Plugins that don't need much config
 return {
-	{ "tpope/vim-sleuth" },
-
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {},
-	},
-
-
-	"tpope/vim-surround",
-
-	"tpope/vim-fugitive",
-
-	-- "vimpostor/vim-tpipeline",
-
-	"luckasRanarison/tailwind-tools.nvim",
-
-	{
-		'mrcjkb/rustaceanvim',
-		version = '^5',
-	}
+	"tpope/vim-sleuth", -- Detect indent settings
+	"tpope/vim-fugitive", -- Git commands
+	"luckasRanarison/tailwind-tools.nvim", -- Tailwind CSS
+	"mrcjkb/rustaceanvim", -- Rust
 }
