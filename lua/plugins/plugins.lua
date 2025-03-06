@@ -9,4 +9,12 @@ return {
 	"tpope/vim-fugitive", -- Git commands
 	"luckasRanarison/tailwind-tools.nvim", -- Tailwind CSS
 	"mrcjkb/rustaceanvim", -- Rust
+
+	"ziglang/zig.vim",
+
+	{
+		"davidmh/mdx.nvim",
+		config = true,
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+	},
 }

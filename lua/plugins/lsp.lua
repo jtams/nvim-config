@@ -30,6 +30,36 @@ return {
 			severity_sort = true,
 		})
 
+		-- Custom hover handler with border
+		local function custom_hover()
+			local bufnr = vim.api.nvim_get_current_buf()
+			local params = vim.lsp.util.make_position_params()
+			vim.lsp.buf_request(bufnr, "textDocument/hover", params, function(_, result, ctx, config)
+				if not (result and result.contents) then
+					return
+				end
+				local markdown_lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
+				markdown_lines = vim.lsp.util.trim_empty_lines(markdown_lines)
+				if vim.tbl_isempty(markdown_lines) then
+					return
+				end
+				local border = {
+					{ "╭", "FloatBorder" },
+					{ "─", "FloatBorder" },
+					{ "╮", "FloatBorder" },
+					{ "│", "FloatBorder" },
+					{ "╯", "FloatBorder" },
+					{ "─", "FloatBorder" },
+					{ "╰", "FloatBorder" },
+					{ "│", "FloatBorder" },
+				}
+				vim.lsp.util.open_floating_preview(markdown_lines, "markdown", {
+					border = border,
+					focusable = false,
+				})
+			end)
+		end
+
 		-- Mostly copied from Kickstart
 		local on_attach = function(_, bufnr)
 			local function safe_map(mode, lhs, rhs, opts)
@@ -54,7 +84,7 @@ return {
 			safe_map("n", "gI", telescope.lsp_implementations, { buffer = bufnr, desc = "Go to implementations" })
 
 			-- Hover
-			safe_map("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Show hover" })
+			safe_map("n", "K", custom_hover, { buffer = bufnr, desc = "Show hover" })
 
 			-- Signature
 			safe_map("n", "L", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Show signature help" })
