@@ -49,3 +49,7 @@ vim.keymap.set("i", "<C-BS>", "<C-w>")
 -- Switch line endings
 vim.api.nvim_set_keymap("n", "<leader>lu", ":edit ++ff=unix<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>ld", ":edit ++ff=dos<CR>", { noremap = true, silent = true })
+
+-- Keep selection after indenting in visual mode
+vim.keymap.set("v", ">", ">gv", { noremap = true })
+vim.keymap.set("v", "<", "<gv", { noremap = true })

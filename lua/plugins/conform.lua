@@ -22,7 +22,7 @@ return {
 				typescriptreact = { "prettier", "prettierd" },
 				css = { "prettier", "prettierd" },
 				scss = { "prettier", "prettierd" },
-				html = { "prettier", "prettierd" },
+				html = { "prettier" },
 				cpp = { "clangd" },
 			},
 			format_on_save = nil,

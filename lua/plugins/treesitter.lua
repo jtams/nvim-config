@@ -73,6 +73,17 @@ return {
 				indent = { enable = true },
 			})
 
+			vim.filetype.add({
+				pattern = {
+					[".*%.html"] = function()
+						if vim.fn.glob(vim.fn.getcwd() .. "/angular.json") ~= "" then
+							return "angular.html"
+						end
+						return "html"
+					end,
+				},
+			})
+
 			-- This is a hack to fix the issue with treesitter adding a weird
 			-- underline that doesn't seem to be addressed yet.
 			-- https://github.com/nvim-treesitter/nvim-treesitter/issues/1506#issuecomment-1823744102

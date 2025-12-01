@@ -1,7 +1,7 @@
 -- Fuzzy finder
 return {
 	"nvim-telescope/telescope.nvim",
-	branch = "0.1.x",
+	tag = "v0.1.9",
 	dependencies = {
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
@@ -14,7 +14,6 @@ return {
 	},
 	config = function()
 		-- Telescope
-
 		local builtin = require("telescope.builtin")
 		local telescope = require("telescope")
 		local theme = require("telescope.themes")
@@ -27,7 +26,6 @@ return {
 						["<C-d>"] = false,
 					},
 				},
-				file_ignore_patterns = { "node_modules/.*", "node_modules" },
 			},
 		})
 

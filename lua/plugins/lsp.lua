@@ -1,5 +1,12 @@
 -- Stolen from Kickstart
 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "java",
+	callback = function()
+		require("jdtls.jtdtls_setup").setup({})
+	end,
+})
+
 return {
 	-- Main LSP Configuration
 	"neovim/nvim-lspconfig",
@@ -10,6 +17,7 @@ return {
 		{ "mason-org/mason.nvim", opts = {} },
 		"mason-org/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		{ "mfussenegger/nvim-jdtls" },
 
 		-- Useful status updates for LSP.
 		{ "j-hui/fidget.nvim", opts = {} },
@@ -81,7 +89,9 @@ return {
 				--  the definition of its *type*, not where it was *defined*.
 				map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
 
-				map("gK", vim.lsp.buf.signature_help, "Signatiure Help")
+				map("gK", vim.lsp.buf.signature_help, "Signature Help")
+
+				map("<leader>de", vim.diagnostic.open_float, "Show Diagnostic")
 
 				-- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
 				---@param client vim.lsp.Client
@@ -243,6 +253,11 @@ return {
 		require("mason-lspconfig").setup({
 			ensure_installed = {},
 			automatic_installation = false,
+			automatic_enable = {
+				exclude = {
+					"jdtls",
+				},
+			},
 			handlers = {
 				function(server_name)
 					local server = servers[server_name] or {}
