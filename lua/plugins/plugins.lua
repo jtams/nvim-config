@@ -11,10 +11,4 @@ return {
 	"mrcjkb/rustaceanvim", -- Rust
 
 	"ziglang/zig.vim",
-
-	{
-		"davidmh/mdx.nvim",
-		config = true,
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-	},
 }
