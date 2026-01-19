@@ -26,8 +26,8 @@ return {
 				cpp = { "clangd" },
 			},
 			format_on_save = nil,
-			notify_on_error = false,
-			log_level = vim.log.levels.ERROR,
+			notify_on_error = true,
+			log_level = vim.log.levels.DEBUG,
 		})
 
 		require("conform").formatters.prettier = {
@@ -42,6 +42,13 @@ return {
 			"<leader>ff",
 			'<CMD>lua require("conform").format()<CR>',
 			{ noremap = true, silent = true, desc = "Format file" }
+		)
+
+		vim.api.nvim_set_keymap(
+			"n",
+			"<leader>fi",
+			"<CMD>ConformInfo<CR>",
+			{ noremap = true, silent = true, desc = "Format info" }
 		)
 
 		-- Add :Format command

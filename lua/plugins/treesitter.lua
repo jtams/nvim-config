@@ -88,6 +88,15 @@ return {
 			-- underline that doesn't seem to be addressed yet.
 			-- https://github.com/nvim-treesitter/nvim-treesitter/issues/1506#issuecomment-1823744102
 			vim.api.nvim_set_hl(0, "@text.uri.vue", { link = "Indentifier" })
+
+			vim.filetype.add({
+				extension = {
+					gotmpl = "gotmpl",
+				},
+				pattern = {
+					["templates/.*%.html"] = "gotmpl",
+				},
+			})
 		end, 0)
 	end,
 }
