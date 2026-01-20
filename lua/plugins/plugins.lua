@@ -10,5 +10,5 @@ return {
 	"luckasRanarison/tailwind-tools.nvim", -- Tailwind CSS
 	"mrcjkb/rustaceanvim", -- Rust
 
-	"ziglang/zig.vim",
+	"ziglang/zig.vim", -- Zig
 }

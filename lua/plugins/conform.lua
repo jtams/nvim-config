@@ -23,6 +23,7 @@ return {
 				css = { "prettier", "prettierd" },
 				scss = { "prettier", "prettierd" },
 				html = { "prettier" },
+				gotmpl = { "prettier" },
 				cpp = { "clangd" },
 			},
 			format_on_save = nil,

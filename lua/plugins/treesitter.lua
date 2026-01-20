@@ -94,7 +94,12 @@ return {
 					gotmpl = "gotmpl",
 				},
 				pattern = {
-					["templates/.*%.html"] = "gotmpl",
+					[".*%.html"] = function(path)
+						if path:match("/templates/") then
+							return "gotmpl"
+						end
+						return "html"
+					end,
 				},
 			})
 		end, 0)
