@@ -30,6 +30,7 @@ return { -- Autocompletion
 			opts = {},
 		},
 		"folke/lazydev.nvim",
+		{ "saghen/blink.compat", version = "2.*" },
 	},
 	--- @module 'blink.cmp'
 	--- @type blink.cmp.Config

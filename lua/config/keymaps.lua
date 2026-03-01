@@ -53,3 +53,6 @@ vim.api.nvim_set_keymap("n", "<leader>ld", ":edit ++ff=dos<CR>", { noremap = tru
 -- Keep selection after indenting in visual mode
 vim.keymap.set("v", ">", ">gv", { noremap = true })
 vim.keymap.set("v", "<", "<gv", { noremap = true })
+
+-- Kind of like VSCode's greatest shortcut: ctrl+d. Changes current word, then pressing . will change the next instance of that word
+vim.keymap.set("n", "cd", "*Ncgn", { noremap = true })
