@@ -1,25 +1,19 @@
--- Config Settings
+-- Config Options
 
--- Leader set to space
-vim.g.mapleader = " "
+-- Line numbers
+vim.o.number = true
 
--- Cursor Block
-vim.opt.guicursor = "n-v-c-i:block"
+-- Relative line numbers
+vim.o.relativenumber = true
 
 -- Set highlight on search
 vim.o.hlsearch = false
 
--- Line numbers
-vim.wo.number = true
-
--- Relative line numbers
-vim.opt.relativenumber = true
-
 -- Hide mode because the status bar already shows it
-vim.opt.showmode = false
+vim.o.showmode = false
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
+vim.o.inccommand = "split"
 
 -- Enable mouse mode
 vim.o.mouse = "a"
@@ -35,36 +29,35 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Keep signcolumn
-vim.wo.signcolumn = "yes"
+vim.o.signcolumn = "yes"
 
 -- Update times
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
 -- Makes completion menu always appear if there's completion results
--- and doesn't select an item from the completion. Default behaviour
--- selects the first item.
+-- and doesn't select an item from the completion. 
 vim.o.completeopt = "menuone,noselect"
 
 -- Set conceallevel to 2 so that markdown headers are hidden
-vim.opt_local.conceallevel = 2
+vim.o.conceallevel = 2
 
 -- Allows for true color in the terminal, needed for color highlighter
 vim.o.termguicolors = true
 
 -- Scroll off
-vim.opt.scrolloff = 10
+vim.o.scrolloff = 10
 
 -- Tab size
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
 
 -- Disable auto commenting
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "*",
 	callback = function()
 		vim.opt_local.formatoptions:remove({ "r", "o" })
 	end,
 })
+
