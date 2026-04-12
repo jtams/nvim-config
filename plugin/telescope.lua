@@ -8,6 +8,13 @@ local builtin = require("telescope.builtin")
 local telescope = require("telescope")
 local theme = require("telescope.themes")
 
+-- Telescope fzf needs to be built
+-- cd ~/.local/share/nvim/site/pack/core/opt/telescope-fzf-native.nvim && make
+local ok = pcall(telescope.load_extension, "fzf")
+if not ok then
+	vim.notify("telescope-fzf-native not built — run make in its plugin dir", vim.log.levels.WARN)
+end
+
 pcall(telescope.load_extension, "fzf")
 
 vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = "Old files" })
