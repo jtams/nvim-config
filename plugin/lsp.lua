@@ -65,7 +65,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			telescope.lsp_type_definitions,
 			{ buffer = event.buf, desc = "LSP: Goto Type Definition" }
 		)
-		vim.keymap.set("n", "gdq", vim.diagnostic.setqflist, { desc = "LSP: Open Diagnostics Quickfix List" })
+		vim.keymap.set("n", "gqf", vim.diagnostic.setqflist, { desc = "LSP: Open Diagnostics Quickfix List" })
 
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
