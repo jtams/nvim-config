@@ -21,6 +21,14 @@ vim.lsp.config("cssls", {
 	},
 })
 
+vim.lsp.config("emmet_language_server", {
+	filetypes = { "html", "css", "template", "gotmpl", "templ" },
+})
+
+vim.lsp.config("html", {
+	filetypes = { "html", "template", "gotmpl" },
+})
+
 require("lazydev").setup({
 	library = {
 		{ path = "${3rd}/luv/library", words = { "vim%.uv" } },

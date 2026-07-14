@@ -9,7 +9,9 @@ conform.setup({
 		lua = { "stylua" },
 		python = { "black" },
 		rust = { "rustfmt", lsp_format = "fallback" },
-		go = { "gopls", lsp_format = "fallback" },
+		-- go = { "gopls", lsp_format = "fallback" },
+		go = { "goimports", "gofmt" },
+		templ = { "templ" },
 
 		html = { "prettierd", "prettier", stop_after_first = true },
 		css = { "prettierd", "prettier", stop_after_first = true },
@@ -20,11 +22,14 @@ conform.setup({
 		typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 		vue = { "prettierd", "prettier", stop_after_first = true },
 		gotmpl = { "prettierd", "prettier", stop_after_first = true },
+		eruby = { "htmlbeautifier", stop_after_first = true },
 
 		json = { "prettierd", "prettier", stop_after_first = true },
 		jsonc = { "prettierd", "prettier", stop_after_first = true },
 		yaml = { "prettierd", "prettier", stop_after_first = true },
 		markdown = { "prettierd", "prettier", stop_after_first = true },
+
+		sql = { "pg_format" },
 
 		cpp = { "clangd" },
 	},
