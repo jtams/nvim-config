@@ -22,7 +22,7 @@ vim.lsp.config("cssls", {
 })
 
 vim.lsp.config("emmet_language_server", {
-	filetypes = { "html", "css", "template", "gotmpl", "templ" },
+	filetypes = { "html", "css", "javascriptreact", "typescriptreact", "template", "gotmpl", "templ" },
 })
 
 vim.lsp.config("html", {
@@ -87,7 +87,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.diagnostic.config({
 	severity_sort = true,
 	float = { source = "if_many" },
-	underline = { severity = vim.diagnostic.severity.ERROR },
+	underline = false,
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "󰅚 ",
