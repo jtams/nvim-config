@@ -22,11 +22,54 @@ vim.lsp.config("cssls", {
 })
 
 vim.lsp.config("emmet_language_server", {
-	filetypes = { "html", "css", "javascriptreact", "typescriptreact", "template", "gotmpl", "templ" },
+	filetypes = { "html", "css", "javascriptreact", "typescriptreact", "astro", "template", "gotmpl", "templ" },
 })
 
 vim.lsp.config("html", {
 	filetypes = { "html", "template", "gotmpl" },
+})
+
+-- Astro
+vim.lsp.config("astro", {
+	settings = {
+		astro = {
+			["auto-import-cache"] = {
+				enabled = false,
+			},
+		},
+	},
+
+	before_init = function(_, config)
+		local util = require("lspconfig.util")
+
+		config.init_options = config.init_options or {}
+		config.init_options.typescript = config.init_options.typescript or {}
+		config.init_options.typescript.tsdk = util.get_typescript_server_path(config.root_dir)
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+	pattern = "*.astro",
+	callback = function(args)
+		vim.b[args.buf].astro_new_file = true
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = "*.astro",
+	callback = function(args)
+		if not vim.b[args.buf].astro_new_file then
+			return
+		end
+
+		vim.b[args.buf].astro_new_file = false
+
+		vim.lsp.enable("astro", false)
+
+		vim.defer_fn(function()
+			vim.lsp.enable("astro", true)
+		end, 100)
+	end,
 })
 
 require("lazydev").setup({

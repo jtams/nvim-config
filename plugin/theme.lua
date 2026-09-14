@@ -17,4 +17,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 -- vim.cmd.colorscheme("catppuccin-mocha")
 vim.cmd.colorscheme("nord")
-vim.api.nvim_set_hl(0, "@markup.link.label.tsx", { link = "Normal" })
+-- vim.cmd.colorscheme("charm")
+
+-- vim.api.nvim_set_hl(0, "@markup.link.label.tsx", { link = "Normal" })
